@@ -14,7 +14,7 @@ function ubahWarnaHeader(){
           });
 }else{
        header.style.backgroundColor = "transparent";
-        header.style.borderBottom = "1px solid rgb(237,236,236)";
+        header.style.borderBottom = "2px solid ";
           title.style.color = "black";
           menu.forEach(function(item){
             item.style.color = "black";
@@ -22,6 +22,7 @@ function ubahWarnaHeader(){
 }
     }
 window.addEventListener("scroll", ubahWarnaHeader);
+
 
 let floatButton = document.getElementById("floating-button");
 
@@ -71,26 +72,67 @@ heroLink.onclick = scrollToHero;
 
 
 let studyLink = document.querySelector('.menu ul li a[href="#Study"]');
-let skillLink = document.querySelector('.menu ul li a[href="#Skill"]');
+let businessLink = document.querySelector('.menu ul li a[href="#Business"]');
 
 
-let studySection = document.getElementById("study");
-let skillSection = document.getElementById("skill");
+let studySection = document.getElementById("Study");
+let businessSection = document.getElementById("Business");
 
 function scrollToStudy(event){
     event.preventDefault();
    studySection.scrollIntoView({
         behavior: "smooth"});
 }
-function scrollToSkill(event){
+function scrollToBusiness(event){
     event.preventDefault();
-    skillSection.scrollIntoView({
+    businessSection.scrollIntoView({
         behavior: "smooth"});
 }
 
 
  studyLink.onclick = document.scrollToStudy;
- skillLink.onclick = document.scrollToSkill;
+ businessLink.onclick = document.scrollToBusiness;
+
+
+
+
+
+ let menuBars = document.getElementById("menu-bars");
+ let sidebarResponsive = document.getElementById("sidebar-responsive");
+ let closeSidebarButton = document.getElementById("close-sidebar");
+
+ function sideBars(){
+sidebarResponsive.style.display = "flex";
+menuBars.style.display = "none";
+ }function closeSidebar(){
+    sidebarResponsive.style.display = "none";
+    menuBars.style.display = "block";
+ }
+ menuBars.addEventListener("click",sideBars);
+ closeSidebarButton.addEventListener("click",closeSidebar);
+
+let resolusiScreen = window.matchMedia("(max-width: 769px)");
+
+function responsiveScreen(screen){
+    if (screen.matches){
+        menuBars.style.display = ("block");
+        menuBars.addEventListener("click",function(){
+            sidebarResponsive.style.display = "block";
+            menuBars.style.display = "none";
+
+        });
+        closeSidebarButton.addEventListener("click",function(){
+            sidebarResponsive.style.display = "none";
+            menuBars.style.display = "block";
+        })
+    }else{
+        sidebarResponsive.style.display = "none";
+        menuBars.style.display = "none";
+    }
+}
+
+ responsiveScreen(resolusiScreen);
+ resolusiScreen.addEventListener("change",responsiveScreen);
 
 
 
